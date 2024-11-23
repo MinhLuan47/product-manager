@@ -1,0 +1,53 @@
+extends ../../layouts/default.pug
+
+block main
+
+    
+    form(action=`${prefixAdmin}/products/edit` method="POST" enctype="multipart/form-data" class="container container-sm mt-5") 
+        - if(message.error)
+            span(class='alert alert-danger msg-box' role='alert') #{message.error} 
+                i(class='bi bi-x-lg')
+                
+        h2 Cập nhật Sản Phẩm 
+        .row
+            .col-md-6
+                .form-group
+                    label(for="title") Tiêu đề
+                    input(type="text" class="form-control" id="title" name="title" value= products.title )
+            .col-md-6
+                .form-group
+                    label(for="category_id") Danh mục
+                    select(class="form-control" id="category_id" name="category_id")
+                        option(value="" disabled selected) -- Chọn danh mục --
+                        option(value="IOS") IOS
+                        option(value="PC") PC
+                        option(value="Laptop") Laptop
+                        option(value="Iphone") Iphone
+                        
+        .form-group
+            label(for="rating") Mô tả
+            input(class="form-control" type="number" id="rating" name="rating" value= products.rating placeholder="Nhập rating")
+        .form-group
+            label(for="price") Giá
+            input(type="number" class="form-control" id="price" name="price" value= products.price min="0" placeholder="Nhập giá sản phẩm")
+        .form-group
+            label(for="discount") % Giảm giá
+            input(type="number" class="form-control" id="discount" name="discountPercentage" value= products.discountPercentage min="0" placeholder="Nhập phần trăm giảm giá")
+        .form-group
+            label(for="stock") Số lượng
+            input(type="number" class="form-control" id="stock" name="stock" value= products.stock min="0" placeholder="Nhập số lượng sản phẩm")
+        .form-group
+            label(for="thumbnail") Ảnh
+            input(type="file" class="form-control-file" id="thumbnail" name="thumbnail" accept="image/*" value= products.thumbnail)
+            img(src="" class="image-preview mt-3" style="max-width: 100%; aspect-ratio: 2/1;")
+        .form-group
+            label(for="position") Vị trí
+            input(type="number" class="form-control" id="position" name="position" placeholder="Tự động tăng" min="1" value= products.position )
+        .form-group.form-check.form-check-inline
+            input(type="radio" class="form-check-input" id="statusActive" name="status" value="active" checked= products.status==='active' ? true : false )
+            label(for="statusActive" class="form-check-label") Hoạt động
+        .form-group.form-check.form-check-inline
+            input(type="radio" class="form-check-input" id="statusInActive" name="status" value="disable" checked= products.status==='disable' ? true : false )
+            label(for="statusInActive" class="form-check-label") Dừng hoạt động
+        .form-group
+            button(type="submit" class="btn btn-primary btn-block") Cập nhật sản phẩm

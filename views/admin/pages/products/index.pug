@@ -1,0 +1,91 @@
+extends ../../layouts/default.pug
+include ../../mixins/pagination.pug
+
+block main
+    
+    .container.p-4
+        - if(message.success)
+            span(class='alert alert-success msg-box' role='alert') #{message.success} 
+                i(class='bi bi-x-lg')
+        - if(message.error)
+            span(class='alert alert-error msg-box' role='alert') #{message.error} 
+                i(class='bi bi-x-lg')
+        .block-title
+            .row 
+                .col-12
+                    h2 Bộ lọc và tìm kiếm
+            .row
+                .col-6
+                    
+                    each btn in optionButtons
+                        button(class=`btn btn-outline-success mr-2 ${ btn.status === status && 'active' }` data-status=`${btn.status}`) #{btn.title}
+                    
+                .form-search.col-6
+                    form(action='' method='GET' name='searchForm')
+                        div(class='form-control wrapper-search w-75 d-inline-block align-middle')
+                            input(
+                                type='text' value= keywords
+                                name='keyword' placeholder='Tìm kiếm...' 
+                                aria-label='Search')
+                            span(class='btn-close') &times
+                        button(class='btn btn-success ml-2 align-middle btn-search' type='submit') Search
+        
+        .row.py-4.my-4
+            .col-4
+                div(class="input-group")
+                    input(class='all-id' type='hidden' name='ids' value='')
+                    select(id="inputGroupSelect04" class="custom-select w-25")
+                        option(value="active") Active
+                        option(value="disable") Disable
+                        option(value="delete-multi") Delete multi
+                 
+                    div(class="input-group-append")
+                        button(class='btn btn-outline-success' 
+                        btn-change-multi-type 
+                        type="button") Áp dụng
+            .col-8
+                a(class='btn btn-outline-success' href='/admin/products/create')
+                    i(class="bi bi-plus")
+                    span Thêm mới
+                   
+
+        div.my-4
+            h2 Danh sách sản phẩm
+            .mt-4
+                .row
+                    table.table.table-hover.table-sm
+                        thead
+                            th
+                                input(type='checkbox' id='checkbox-all')
+                            th Od
+                            th Image
+                            th Name
+                            th Price
+                            th Discount
+                            th Order
+                            th Status
+                            th Action
+                        tbody
+                            each item,i in products
+                                tr(data-id= item.id)
+                                    td
+                                        input(type='checkbox' class='check-product' value= item.id  )
+                                    td #{i+1}
+                                    td 
+                                        img(src= item.thumbnail alt='anh' width='80')
+                                    td #{item.title}
+                                    td #{Math.round(item.price)}$
+                                    td #{Math.round(item.discountPercentage)}%
+                                    td
+                                        input(class='pl-2 form-control form-control-sm' change-position type='number' min='0' value= item.position)
+                                    td
+                                        a(class=`badge ${item.status==='active' ? 'badge-success' : 'badge-danger'}`
+                                        data-change= item.status==='active' ? 'disable' : 'active'
+                                        data-index= item.id   
+                                        href='') #{item.status}
+
+                                    td
+                                        a(class="btn btn-warning mr-1" href=`/admin/products/edit/${item.id}`) Edit
+                                        span(class="btn btn-danger" btn-delete-one)  Delete
+                form(action='/' method='POST' name='changeStatusForm')
+            +nav_pagination(page)

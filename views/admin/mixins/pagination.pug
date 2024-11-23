@@ -1,0 +1,12 @@
+mixin nav_pagination(page)
+    nav
+        ul(class="pagination")
+            li(class=`page-item ${page.currentPage == 1 ? 'disabled':'' }`)
+                a(class="page-link"  href=`/admin/products?page=${+page.currentPage-1}`) &laquo;
+            
+            each _,i in Array(page.totalPage)
+                li(class=`page-item ${page.currentPage == (i+1) && 'active'}`)
+                    a(class=`page-link` href=`/admin/products?page=${i+1}` data-page= i+1) #{i+1}
+                
+            li(class=`page-item ${page.currentPage == page.totalPage ? 'disabled' :'' }`)
+                a(class="page-link" href=`/admin/products?page=${+page.currentPage + 1}`) &raquo; 

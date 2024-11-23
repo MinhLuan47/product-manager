@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    background-color: #333;
+    color: #fff;
+}
+
+.content {
+    display: flex;
+}
+
+.sider {
+    width: 240px;
+    min-height: calc(100vh - 60px);
+    height: auto;
+    color: #fff;
+    background-color: #555;
+}
+.sider h1 {
+    text-align: center;
+}
+
+.main {
+    flex: 1;
+}
+
+input[name='keyword'] {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.wrapper-search {
+    position: relative;
+}
+
+.wrapper-search .btn-close {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.msg-box {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #218838;
+    animation: slideTo 1s ease-in-out;
+}
+@keyframes slideTo {
+    from {
+        right: -100%;
+    }
+    to {
+        right: 4px;
+    }
+}
+
+.msg-box i {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Form create */
+
+.container {
+    scrollbar-gutter: stable both-edges;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: 600;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: none;
+}
+
+.form-check-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.image-preview {
+    display: block;
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Form create */

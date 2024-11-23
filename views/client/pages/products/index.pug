@@ -1,0 +1,19 @@
+extend ../../layouts/default.pug
+include ../../mixins/box-head.pug
+block main
+    .container.my-3
+        .row
+            .col-12
+                +box-head('Danh sách sản phẩm')
+        .row.w-full
+            each item in products
+                .col-4.mb-3
+                    .product-item
+                        .inner-image
+                            img(src=item.thumbnail alt="iphone")
+                        .inner-content
+                            h3.inner-title #{item.title}
+                            .inner-price-old #{Math.floor(item.price *(1 + item.discountPercentage/100))}$
+                            span.inner-discount #{Math.round(item.discountPercentage)}%
+                            span.inner-price-new #{item.price} $
+                
