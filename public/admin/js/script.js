@@ -1,7 +1,5 @@
-let basePath = 'http://localhost:3000'
 let url = new URL(window.location.href)
-
-// status
+const basePath = url.host
 document.addEventListener('DOMContentLoaded', () => {
     const allButton = document.querySelectorAll('button[data-status]')
 
