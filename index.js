@@ -29,10 +29,10 @@ app.use(methodOverride('_method'))
 app.use(cookieParser(keyCookie))
 app.use(
     session({
-        secret: keyCookie,
+        secret: process.env.SESSION_SECRET || 'defaultSecret',
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 60000 },
+        cookie: { secure: false },
     }),
 )
 app.use(flash())
