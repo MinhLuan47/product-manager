@@ -146,9 +146,9 @@ module.exports = {
     },
     createProduct: async (req, res) => {
         req.body.position = (await Product.countDocuments()) + 1
-        if (req.file) {
-            req.body.thumbnail = `/uploads/${req.file.filename}`
-        }
+        // if (req.file) {
+        //     req.body[req.file.fieldname] = `/uploads/${req.file.filename}`
+        // }
         const newItem = new Product(req.body)
 
         try {
